@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.accordion {
+  width: 100%;
+  margin-top: 2.8rem;
+  text-align: center;
+  border-radius: 0.3rem;
+  border: 1px solid #CCD2DC;
+
+  & > div { /* WorkAccordionItem을 의미 */
+    &:first-child {
+      div {
+        border-top: none;
+      }
+    }
+
+    &:last-child {
+      div {
+        border-bottom: none;
+      }
+    }
+  }
+}
