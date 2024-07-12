@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  .button {
+    border: none;
+    border-radius: 1rem;
+    padding: 8px;
+    background: transparent;
+    color: #B1B7C3;
+    font-weight: 400;
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: #EDF7FF;
+      cursor: pointer;
+    }
+
+    &.disabled {
+      cursor: revert;
+      transform: revert;
+    }
+
+    &.current {
+      color: #333;
+      font-weight: 500;
+      cursor: revert;
+      text-decoration: underline;
+    }
+  }
+}

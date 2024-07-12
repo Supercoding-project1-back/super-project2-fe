@@ -1,0 +1,266 @@
+.station-info-container {
+  display: flex;
+  height: 13rem;
+  padding: 1.2rem 2.4rem;
+
+  & + .station-info-container {
+    box-shadow: 0 -0.5px 0 0 #CCD2DC; /* 얇은 위쪽 경계선 */
+  }
+
+  &:hover {
+    background-color: #EDF7FF;
+  }
+
+  .station-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+    .station-name {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #006AB7;
+    }
+
+    .station-attribute {
+      display: flex;
+
+      & + .station-attribute {
+        margin-top: 0.5rem;
+      }
+
+      .attribute-icon {
+        width: 1.6rem;
+        height: 1.6rem;
+      }
+
+      .attribute-value {
+        display: block;
+        margin-left: 0.2rem;
+        width: 22.2rem;
+        line-height: 1.6rem;
+        font-size: 1.3rem;
+
+        /* 여러 줄 자르기 추가 스타일 */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+
+    }
+
+    .figure-container {
+      span {
+        font-size: 1.1rem;
+
+        & + span {
+          margin-left: 0.5rem;
+        }
+      }
+
+      .status {
+        border-radius: 0.2rem;
+        padding: 0.1rem 0.3rem;
+
+        &.green {
+          background-color: #00B4AF;
+          color: #FFF;
+        }
+
+        &.gray {
+          background-color: #EAF0F3;
+          color: #B1B7C3;
+        }
+      }
+    }
+  }
+
+  .station-img {
+    width: 10.5rem;
+    height: 10.5rem;
+    margin-left: 1rem;
+  }
+}
+
+@media (max-width: 768px){
+  .station-info-container {
+    display: flex;
+    height: 13rem;
+    padding: 1.2rem 2.4rem;
+    justify-content: space-between;
+
+    & + .station-info-container {
+      box-shadow: 0 -0.5px 0 0 #CCD2DC; /* 얇은 위쪽 경계선 */
+    }
+
+    &:hover {
+      background-color: #EDF7FF;
+    }
+
+    .station-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+
+      .station-name {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #006AB7;
+      }
+
+      .station-attribute {
+        display: flex;
+
+        & + .station-attribute {
+          margin-top: 0.5rem;
+        }
+
+        .attribute-icon {
+          width: 1.6rem;
+          height: 1.6rem;
+        }
+
+        .attribute-value {
+          display: block;
+          margin-left: 0.2rem;
+          width: 22.2rem;
+          line-height: 1.6rem;
+          font-size: 1.3rem;
+
+          /* 여러 줄 자르기 추가 스타일 */
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+        }
+
+      }
+
+      .figure-container {
+        span {
+          font-size: 1.1rem;
+
+          & + span {
+            margin-left: 0.5rem;
+          }
+        }
+
+        .status {
+          border-radius: 0.2rem;
+          padding: 0.1rem 0.3rem;
+
+          &.green {
+            background-color: #00B4AF;
+            color: #FFF;
+          }
+
+          &.gray {
+            background-color: #EAF0F3;
+            color: #B1B7C3;
+          }
+        }
+      }
+    }
+
+    .station-img {
+      width: 10.5rem;
+      height: 10.5rem;
+    }
+  }
+}
+@media (max-width: 360px){
+  .station-info-container {
+    display: flex;
+    height: 13rem;
+    padding: 1.2rem 2.4rem;
+
+    & + .station-info-container {
+      box-shadow: 0 -0.5px 0 0 #CCD2DC; /* 얇은 위쪽 경계선 */
+    }
+
+    &:hover {
+      background-color: #EDF7FF;
+    }
+
+    .station-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+
+      .station-name {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #006AB7;
+      }
+
+      .station-attribute {
+        display: flex;
+
+        & + .station-attribute {
+          margin-top: 0.5rem;
+        }
+
+        .attribute-icon {
+          width: 1.6rem;
+          height: 1.6rem;
+        }
+
+        .attribute-value {
+          display: block;
+          margin-left: 0.2rem;
+          width: 22.2rem;
+          line-height: 1.6rem;
+          font-size: 1.3rem;
+
+          /* 여러 줄 자르기 추가 스타일 */
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+        }
+
+      }
+
+      .figure-container {
+        span {
+          font-size: 1.1rem;
+
+          & + span {
+            margin-left: 0.5rem;
+          }
+        }
+
+        .status {
+          border-radius: 0.2rem;
+          padding: 0.1rem 0.3rem;
+
+          &.green {
+            background-color: #00B4AF;
+            color: #FFF;
+          }
+
+          &.gray {
+            background-color: #EAF0F3;
+            color: #B1B7C3;
+          }
+        }
+      }
+    }
+
+    .station-img {
+      width: 10.5rem;
+      height: 10.5rem;
+      margin-left:  - 4rem;
+    }
+  }
+  .station-text{
+    width: 50%;
+  }
+}
