@@ -6,8 +6,10 @@
 }
 
 .imgGroup {
-  height: 500px;
-  background-color: rgb(211, 211, 211);
+  .productImg {
+    height: 500px;
+    margin-bottom: 0.6rem;
+  }
 }
 
 ul.infoGroup {

@@ -8,6 +8,7 @@ import Join from "./pages/Login/Join/Join";
 import HeaderLayout from "./pages/HeaderLayout";
 import "./App.css";
 import ProductDetail from "./pages/ProductListPage/ProductDetail/ProductDetail";
+import ProductUpload from "./pages/ProductUpload/ProductUpload";
 
 const router = createBrowserRouter([
   { path: "/", element: <Login /> },
@@ -19,8 +20,9 @@ const router = createBrowserRouter([
       { index: true, element: <ProductListPage /> },
       { path: "payment", element: <PaymentPage /> },
       { path: "basket", element: <BasketPage /> },
-      { path: "mainpage/:productId", element: <ProductDetail /> },
+      { path: ":productId", element: <ProductDetail /> },
       { path: "mypage", element: <MyPage /> },
+      { path: "upload", element: <ProductUpload /> },
     ],
   },
 ]);

@@ -1,7 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './ProductUpload.module.scss';
+import { ImageUploadField, ImageViewField } from '../../components/Core';
 
 const ProductUpload = () => {
+  const [product, setProduct] = useState({
+    category: '',
+    name: '',
+    image: '',
+    price: 0,
+    size: '',
+    careGuide: '',
+    stock: 0,
+  });
+
+  const handleImageChange = (imageData) => {
+    setProduct(prevProduct => ({
+      ...prevProduct,
+      image: imageData
+    }));
+  };
+
+
   return (
     <div className={styles.wrap}>
       <h2>상품등록</h2>
@@ -30,7 +49,13 @@ const ProductUpload = () => {
         <li>
           <div className={styles.subTitle}>Product Image</div>
           <div className={styles.inputWrap}>
-            <input type='file' />
+            <ImageUploadField
+              className={styles.ImgUpload}
+              onChange={handleImageChange}
+            />
+            <ImageViewField
+              className={styles.ImgVeiw}
+            />
           </div>
         </li>
         <li>
@@ -48,13 +73,25 @@ const ProductUpload = () => {
         <li>
           <div className={styles.subTitle}>Care Guide</div>
           <div className={styles.inputWrap}>
-            <textarea></textarea>
+            <textarea placeholder='상품 관리 방법에 대해 작성해주세요'></textarea>
+          </div>
+        </li>
+        <li>
+          <div className={styles.subTitle}>Description</div>
+          <div className={styles.inputWrap}>
+            <textarea placeholder='상품에 대해 설명해주세요'></textarea>
           </div>
         </li>
         <li>
           <div className={styles.subTitle}>Product stock</div>
           <div className={styles.inputWrap}>
             <input type='text' />
+          </div>
+        </li>
+        <li>
+          <div className={styles.subTitle}>Delivery Fee</div>
+          <div className={styles.inputWrap}>
+            <textarea></textarea>
           </div>
         </li>
       </ul>

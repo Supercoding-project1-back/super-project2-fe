@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./ProductListPage.scss";
-import {Pagination, SearchField} from "../../components/Core";
+import { Pagination, SearchField } from "../../components/Core";
 
 function ProductListPage() {
     const navigate = useNavigate();
@@ -14,7 +14,7 @@ function ProductListPage() {
 
     const requestProductList = async (searchKeyword) => {
         try {
-            const response = await fetch(`http://localhost:8080/products?${searchKeyword}`, {
+            const response = await fetch(`http://localhost:8080/api/items?${searchKeyword}`, {
                 method: "GET",
             });
             if (!response.ok) {
@@ -86,7 +86,7 @@ function ProductListPage() {
                         {productList.map((product, index) => (
                             <div className={styles["grid-container"]} key={index}>
                                 <a href={`mainpage/${product.productId}`}
-                                   onClick={() => productClickHandler(product.productId)}>
+                                    onClick={() => productClickHandler(product.productId)}>
                                     {product.imageList && product.imageList.length > 0 ? (
                                         <img
                                             src={product.imageList[0].image}

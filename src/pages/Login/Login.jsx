@@ -1,8 +1,9 @@
 import React from "react";
 
-function Login () {
-    return(
+function Login() {
+    return (
         <>
+            로그인페이지입니다.
         </>
     )
 }

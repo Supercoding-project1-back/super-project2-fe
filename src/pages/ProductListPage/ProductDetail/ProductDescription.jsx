@@ -1,13 +1,22 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styles from './ProductDescription.module.scss';
 import useAccordion from '../../../hooks/useAccordion';
 import AccordionItem from '../../../components/AccordionItem';
+import { useNavigate } from 'react-router-dom';
 
-const ProductDetailInfo = () => {
+const ProductDescription = ({ product }) => {
   const { openIndex, toggleHandler } = useAccordion();
+  const navigate = useNavigate();
 
   const [quantity, setQuantity] = useState(1);
-  const [inStock, setInStock] = useState(true);
+  const [inStock, setInStock] = useState(product.count > 0);
+
+  useEffect(() => {
+    setInStock(product.count > 0);
+    if (product.count === 0) {
+      setQuantity(0);
+    }
+  }, [product.count]);
 
   const increaseHandler = useCallback(() => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -27,7 +36,7 @@ const ProductDetailInfo = () => {
   const accordionDesData = [
     {
       title: 'Size',
-      content: '가로 45 x 높이 23 x 깊이 8cm'
+      content: product.size
     },
     {
       title: 'Material',
@@ -39,15 +48,7 @@ const ProductDetailInfo = () => {
         <ol>
           <li>
             <p>
-              - 일상적인 관리: 가방의 겉면을 부드럽게 천을 사용해 닦아주세요. 거친 소재는 표면을 손상시킬 수 있습니다. 먼지가 쌓이지 않도록 정기적으로 건조한 천으로 가방을 닦아주세요.
-            </p>
-            <br />
-            <p>
-              - 보관: 가방을 사용하지 않을 때는 습기가 없고 통풍이 잘 되는 서늘한 곳에 보관하는 것이 좋습니다. 단 장시간 직사광선에 노출되면 인조가죽이 변색될 수 있으니 직사광선을 피해서 보관해주세요.
-            </p>
-            <br />
-            <p>
-              - 또한 가방을 사용하지 않을 때는 내부에 신문지나 부드러운 천을 채워 보관하면 오랫동안 형태를 유지하는데 도움이 됩니다.
+              {product.careGuide}
             </p>
           </li>
         </ol>
@@ -69,18 +70,26 @@ const ProductDetailInfo = () => {
     },
   ]
 
+  const navigateToBasket = () => {
+    navigate(`/mainpage/basket`)
+  }
+
+  const navigateToPayment = () => {
+    navigate(`/mainpage/payment`)
+  }
+
 
   return (
     <section className={styles.wrap}>
       <div className={styles.inner}>
         <h2 className={styles.title}>
-          Split Half Moon Messenger Bag_Dark brown
+          {product.name}
         </h2>
 
         <ul className={styles.info1}>
           <li>
             <span className={styles.subTitle}>Price</span>
-            <span>119,000원</span>
+            <span>{product.price} 원</span>
           </li>
           <li>
             <span className={styles.subTitle}>적립금</span>
@@ -89,7 +98,7 @@ const ProductDetailInfo = () => {
         </ul>
 
         <div className={styles.description}>
-          핸즈프리로 가볍고 편안하게 착용할 수 있는 스플릿 하프문 메신저백 입니다. 크로스 바디 스타일에 완벽한 핏이 되도록 일반 가죽보다 더 부드럽고 유연한 신세틱 레더를 사용하였고, 조절 가능한 스트랩과 지퍼 디테일로 이루어져 있습니다.
+          {product.description}
         </div>
 
         {/* 아코디언 형태 */}
@@ -113,7 +122,7 @@ const ProductDetailInfo = () => {
           <div className={styles.productPurchaseWrap}>
             <div className={styles.productCountWrap}>
               <div className={styles.productName}>
-                Split Half Moon Messenger Bag_Dark brown
+                {product.name}
               </div>
               <div className={styles.productCount}>
                 <button onClick={decreaseHandler}>-</button>
@@ -126,8 +135,18 @@ const ProductDetailInfo = () => {
             </div>
 
             <div className={styles.buttonGroup}>
-              <button className={styles.btnBuyNow}>Buy Now</button>
-              <button className={styles.btnAddCart}>Add to Cart</button>
+              <button
+                className={styles.btnBuyNow}
+                onClick={navigateToPayment}
+              >
+                Buy Now
+              </button>
+              <button
+                className={styles.btnAddCart}
+                onClick={navigateToBasket}
+              >
+                Add to Cart
+              </button>
             </div>
           </div>
         ) : (
@@ -140,4 +159,4 @@ const ProductDetailInfo = () => {
   );
 };
 
-export default ProductDetailInfo;
+export default ProductDescription;
