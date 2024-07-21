@@ -38,7 +38,7 @@ function Login() {
       <div className={styles["card"]}>
         <div className={styles["border"]}>
           <div className={styles["first-section"]}>
-            <span className={styles["login-title"]}></span>
+            <span className={styles["login-title"]}>로그인</span>
           </div>
           <div className={styles["input-section"]}>
             <div className={styles["text-section"]}>

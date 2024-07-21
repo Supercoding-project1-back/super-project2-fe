@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: calc(100% - 2rem);
   padding: 0 10px;
 
   .card {
@@ -70,11 +71,12 @@
           color: #888;
         }
       }
-
-      .pagination {
-        margin-top: 1rem;
-        align-self: center;
-      }
     }
+  }
+
+  .pagination {
+    position: absolute;
+    bottom: 0;
+    align-self: center;
   }
 }
