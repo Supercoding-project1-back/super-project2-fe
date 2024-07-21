@@ -8,51 +8,48 @@ const ProductDescription = ({ product }) => {
   const { openIndex, toggleHandler } = useAccordion();
   const navigate = useNavigate();
 
+  // product가 정의되지 않은 경우 기본값을 설정
   const [quantity, setQuantity] = useState(1);
-  const [inStock, setInStock] = useState(product.count > 0);
+  const [inStock, setInStock] = useState(false);
 
+  // product가 정의되었는지 확인
   useEffect(() => {
-    setInStock(product.count > 0);
-    if (product.count === 0) {
-      setQuantity(0);
+    if (product) {
+      setInStock(product.count > 0);
+      if (product.count === 0) {
+        setQuantity(0);
+      }
     }
-  }, [product.count]);
+  }, [product]);
 
   const increaseHandler = useCallback(() => {
     setQuantity((prevQuantity) => prevQuantity + 1);
-  }, [])
-
-  const decreaseHandler = useCallback(() => {
-    setQuantity((prevQuantity) => {
-      if (prevQuantity > 1) {
-        return prevQuantity - 1;
-      } else {
-        return prevQuantity;
-      }
-    });
   }, []);
 
+  const decreaseHandler = useCallback(() => {
+    setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : prevQuantity));
+  }, []);
 
   const accordionDesData = [
     {
       title: 'Size',
-      content: product.size
+      content: product ? product.size : '정보 없음',
     },
     {
       title: 'Material',
-      content: '- Outside 100% Polyurethane / Inside 100% Polyester'
+      content: '- Outside 100% Polyurethane / Inside 100% Polyester',
     },
     {
       title: 'Care Guide',
-      content: (
+      content: product ? (
         <ol>
           <li>
-            <p>
-              {product.careGuide}
-            </p>
+            <p>{product.careGuide}</p>
           </li>
         </ol>
-      )
+      ) : (
+        '정보 없음'
+      ),
     },
     {
       title: 'Shipping Info',
@@ -66,30 +63,27 @@ const ProductDescription = ({ product }) => {
             <p>배송안내 : 도서 산간 지역은 별도의 추가금액이 발생할 수 있습니다.</p>
           </li>
         </ol>
-      )
+      ),
     },
-  ]
+  ];
 
   const navigateToBasket = () => {
-    navigate(`/mainpage/basket`)
-  }
+    navigate(`/basket`);
+  };
 
   const navigateToPayment = () => {
-    navigate(`/mainpage/payment`)
-  }
-
+    navigate(`/payment`);
+  };
 
   return (
     <section className={styles.wrap}>
       <div className={styles.inner}>
-        <h2 className={styles.title}>
-          {product.name}
-        </h2>
+        <h2 className={styles.title}>{product ? product.name : '상품 이름'}</h2>
 
         <ul className={styles.info1}>
           <li>
             <span className={styles.subTitle}>Price</span>
-            <span>{product.price} 원</span>
+            <span>{product ? `${product.price} 원` : '정보 없음'}</span>
           </li>
           <li>
             <span className={styles.subTitle}>적립금</span>
@@ -98,53 +92,41 @@ const ProductDescription = ({ product }) => {
         </ul>
 
         <div className={styles.description}>
-          {product.description}
+          {product ? product.description : '상품 설명'}
         </div>
 
-        {/* 아코디언 형태 */}
         <ul className={styles.info2}>
-          {accordionDesData.map((item, index) => {
-            return (
-              <AccordionItem
-                key={index}
-                index={index}
-                isOpen={openIndex === index}
-                title={item.title}
-                onToggle={toggleHandler}
-              >
-                {item.content}
-              </AccordionItem>
-            )
-          })}
+          {accordionDesData.map((item, index) => (
+            <AccordionItem
+              key={index}
+              index={index}
+              isOpen={openIndex === index}
+              title={item.title}
+              onToggle={toggleHandler}
+            >
+              {item.content}
+            </AccordionItem>
+          ))}
         </ul>
 
         {inStock ? (
           <div className={styles.productPurchaseWrap}>
             <div className={styles.productCountWrap}>
-              <div className={styles.productName}>
-                {product.name}
-              </div>
+              <div className={styles.productName}>{product ? product.name : '상품 이름'}</div>
               <div className={styles.productCount}>
                 <button onClick={decreaseHandler}>-</button>
-                <div
-                  id='productQuantity'
-                  className={styles.productQuantity}
-                >{quantity}</div>
+                <div id="productQuantity" className={styles.productQuantity}>
+                  {quantity}
+                </div>
                 <button onClick={increaseHandler}>+</button>
               </div>
             </div>
 
             <div className={styles.buttonGroup}>
-              <button
-                className={styles.btnBuyNow}
-                onClick={navigateToPayment}
-              >
+              <button className={styles.btnBuyNow} onClick={navigateToPayment}>
                 Buy Now
               </button>
-              <button
-                className={styles.btnAddCart}
-                onClick={navigateToBasket}
-              >
+              <button className={styles.btnAddCart} onClick={navigateToBasket}>
                 Add to Cart
               </button>
             </div>

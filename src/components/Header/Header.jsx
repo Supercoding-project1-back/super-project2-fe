@@ -1,26 +1,19 @@
-import React, { useState, useEffect } from "react";
-import styles from "./Header.module.scss";
+import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-// import { useSelector } from "react-redux";
+import styles from "./Header.module.scss";
 
 function Header() {
-
     const navigate = useNavigate();
-    // const cartItemCount = useSelector(state => state.cart.items.length); // Assuming your cart state has an items array
-    // const loginMember = useSelector(state => state.loginMember);
+    const isAuthenticated = localStorage.getItem("isAuthenticated");
 
-    const logoutClickHandler = async () => {
-        const searchParams = new URLSearchParams({
-            // memberId: loginMember.memberId
-        });
-        const response = await fetch(`http://localhost:8080/auth/logout?${searchParams}`, {
-            method: "GET",
-        });
-        if (!response.ok) {
-            alert("서버와의 통신간에 오류가 발생하였습니다. \n잠시 후에, 다시 시도해 주세요.");
-            return;
+    const logoutClickHandler = () => {
+        const confirmLogout = window.confirm('로그아웃 하시겠습니까?');
+
+        if (confirmLogout) {
+            // 로컬 스토리지에서 로그인 상태 삭제
+            localStorage.removeItem("isAuthenticated");
+            navigate("/");
         }
-        navigate("/");
     };
 
     return (
@@ -28,7 +21,7 @@ function Header() {
             <div className={styles["section"]}>
                 <div className={styles["left"]}>
                     <div className={styles["business-logo"]}>
-                        <NavLink to="/mainpage" title={"MADGOAT"} className={styles["nav-links"]}>
+                        <NavLink to="/" title={"MADGOAT"} className={styles["nav-links"]}>
                             MADGOAT
                         </NavLink>
                     </div>
@@ -39,15 +32,22 @@ function Header() {
                             <li className={styles["nav-item"]}>
                                 <NavLink to="/search" className={styles["nav-links"]}>SEARCH</NavLink>
                             </li>
-                            <li className={styles["nav-item"]} onClick={logoutClickHandler}>
-                                <span className={styles["form-item"]}>LOGOUT</span>
+                            <li className={styles["nav-item"]}>
+                                {isAuthenticated ? (
+                                    <NavLink to="#" className={styles["nav-links"]} onClick={logoutClickHandler}>
+                                        LOGOUT
+                                    </NavLink>
+                                ) : (
+                                    <NavLink to="/login" className={styles["nav-links"]}>
+                                        LOGIN
+                                    </NavLink>
+                                )}
                             </li>
                             <li className={styles["nav-item"]}>
                                 <NavLink to="/mypage" className={styles["nav-links"]}>MY PAGE</NavLink>
                             </li>
                             <li className={styles["nav-item"]}>
-                                {/*<NavLink to="/cart" className={styles["nav-links"]}>CART ({cartItemCount})</NavLink>*/}
-                                <NavLink to="/cart" className={styles["nav-links"]}>CART (0)</NavLink>
+                                <NavLink to="/basket" className={styles["nav-links"]}>CART (0)</NavLink>
                             </li>
                         </ul>
                     </nav>

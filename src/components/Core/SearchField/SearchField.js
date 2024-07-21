@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./SearchField.module.scss";
 import Icon from "../Icon/Icon";
 
-function SearchField({value, onChange, onKeyUp, label, className}) {
+function SearchField({ value, onChange, onKeyUp, label, className }) {
     const [inputValue, setInputValue] = useState(value || "");
     const [focused, setFocused] = useState(false);
 
@@ -35,7 +35,7 @@ function SearchField({value, onChange, onKeyUp, label, className}) {
         <div className={`${styles.container} ${className}`}>
             <div className={`${styles["input-container"]} ${focused ? styles.focused : ""}`}>
                 <label className={styles["label"]}>{label}</label>
-                <Icon type={"search"} className={styles["icon-search"]}/>
+                <Icon type={"search"} className={styles["icon-search"]} />
                 <input
                     className={styles.input}
                     onFocus={focusHandler}
@@ -46,7 +46,7 @@ function SearchField({value, onChange, onKeyUp, label, className}) {
                 />
                 {inputValue && (
                     <button className={styles["clear"]} onClick={inputClearHandler} tabIndex={-1}>
-                        <Icon type={"cancel"} className={styles["icon-clear"]}/>
+                        <Icon type={"cancel"} className={styles["icon-clear"]} />
                     </button>
                 )}
             </div>

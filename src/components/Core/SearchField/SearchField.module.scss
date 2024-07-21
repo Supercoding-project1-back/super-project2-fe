@@ -50,7 +50,8 @@
       font-size: inherit;
       font-weight: inherit;
 
-      &:focus, &:hover {
+      &:focus,
+      &:hover {
         border: 1px solid #008FF6;
       }
     }

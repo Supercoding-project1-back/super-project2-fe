@@ -6,8 +6,14 @@
 }
 
 .imgGroup {
+  // width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   .productImg {
-    height: 500px;
+    background: transparent;
     margin-bottom: 0.6rem;
   }
 }
@@ -27,5 +33,4 @@ ul.infoGroup {
       padding: 10px 0 30px;
     }
   }
-
 }

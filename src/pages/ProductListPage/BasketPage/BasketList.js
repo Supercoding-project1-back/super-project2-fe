@@ -3,12 +3,14 @@ import styles from "./BasketInfo.module.scss";
 import { Icon, ImageViewField } from "../../../components/Core";
 
 function BasketInfo({ onClick, product }) {
-    const { basketId, productId, productName, productCount, productPrice, image } = product;
+    // product가 정의된 경우에만 basketId 접근
+    const basketId = product?.basketId;
+    const { productId, productName, productCount, productPrice, image } = product || {};
 
     const removeClickHandler = async (event) => {
         event.stopPropagation();
         try {
-            const response = await fetch(`http://localhost:8080/basket/${basketId}`, {
+            const response = await fetch(`http://13.54.82.156:8080/cart/${basketId}`, {
                 method: 'DELETE',
             });
             if (response.ok) {
@@ -22,7 +24,7 @@ function BasketInfo({ onClick, product }) {
     const wishClickHandler = async (event) => {
         event.stopPropagation();
         try {
-            const response = await fetch("http://localhost:8080/wishlist", {
+            const response = await fetch("http://localhost:8080/cart", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -60,14 +62,14 @@ function BasketInfo({ onClick, product }) {
             <div className={styles["product-support"]}>
                 <div className={styles["button"]}>
                     <button className={styles["remove"]}
-                            onClick={removeClickHandler}
+                        onClick={removeClickHandler}
                     >
                         REMOVE
                     </button>
                 </div>
                 <div className={styles["button"]}>
                     <button className={styles["wishlist"]}
-                            onClick={wishClickHandler}
+                        onClick={wishClickHandler}
                     >
                         WISHLIST
                     </button>

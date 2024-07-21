@@ -3,22 +3,12 @@
 .content {
   display: flex;
   flex-direction: column;
-  width: calc(100% - 20rem);
-  height: calc(100vh - 8rem);
+  width: 100%;
+  padding: 0 10px;
 
   .card {
     display: flex;
     flex-direction: column;
-
-
-    .search-section {
-      display: flex;
-      justify-content: center;
-
-      .search-field {
-        width: 50rem;
-      }
-    }
 
     .container {
       display: grid;
@@ -38,15 +28,22 @@
         transition: transform 0.2s ease-in-out;
       }
 
-      .gridItem a {
+      a {
         text-decoration: none;
         color: inherit;
       }
 
-      .gridItem img {
-        max-width: 100%;
-        height: auto;
+      .imgWrap {
+        height: 350px;
         border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          max-height: 100%;
+          border-radius: 8px;
+        }
       }
 
       .noImage {

@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./TextField.module.scss";
-import {Icon} from "../index";
+import { Icon } from "../index";
 
 
-function TextField({value, onChange, type, disabled, className, placeholder}) {
+function TextField({ value, onChange, type, disabled, className, placeholder }) {
     const [inputValue, setInputValue] = useState(value || "");
 
     const inputChangeHandler = (event) => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./ProductListPage.module.scss";
-import { Pagination, SearchField } from "../../components/Core";
+import { Pagination } from "../../components/Core";
 
 function ProductListPage() {
     const navigate = useNavigate();
@@ -14,13 +14,15 @@ function ProductListPage() {
 
     const requestProductList = async (searchKeyword) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/items?${searchKeyword}`, {
+            const response = await fetch(`http://13.54.82.156:8080/api/items?${searchKeyword}`, {
                 method: "GET",
             });
             if (!response.ok) {
                 throw new Error("데이터를 불러오는 데에 실패했습니다");
             }
-            return await response.json();
+            const data = await response.json();
+            console.log("API Response:", data);
+            return data;
         } catch (error) {
             alert("상품 목록 조회에 실패하였습니다. 잠시 후 다시 시도해 주세요.");
             console.error(error);
@@ -31,86 +33,81 @@ function ProductListPage() {
         const data = await requestProductList(searchKeyword);
         if (!data) return;
 
-        const pagination = data.pagination;
-        setTotal(pagination.totalCount);
-        setPage(pagination.page);
-        setSize(pagination.size);
+        if (data.totalElements !== undefined && data.content) {
+            setTotal(data.totalElements);
+            setSize(data.size);
+            setPage(data.number + 1);
 
-        const productsList = data.elements
-            .filter(product => product.productName.includes(searchTerm))
-            .map(product => ({
-                productId: product.productId,
-                productName: product.productName,
-                productPrice: product.productPrice,
-                imageList: product.imageList
-            }));
-        setProductList(productsList);
-        setTotal(pagination.totalCount);
+            const productsList = data.content
+                .filter(product => product.name.includes(searchTerm))
+                .map(product => ({
+                    productId: product.id,
+                    productName: product.name,
+                    productPrice: product.price,
+                    imageList: product.files.map(file => ({ image: `http://13.54.82.156:8080${file.fileUrl}` }))
+                }));
+            setProductList(productsList);
+        } else {
+            console.error("올바른 데이터 형식이 아닙니다.");
+        }
     }, [searchTerm]);
 
     const pageClickHandler = async (newPage) => {
         setPage(newPage);
-        const searchKeyword = new URLSearchParams({ page: newPage, size, search: searchTerm });
+        const searchKeyword = new URLSearchParams({ page: newPage - 1, size, search: searchTerm }).toString();
         initProductList(searchKeyword);
-    }
+    };
 
     const productClickHandler = (productId) => {
-        navigate(`mainpage/${productId}`);
-    }
+        navigate(`${productId}`);
+    };
 
-    // useEffect(() => {
-    //     const params = new URLSearchParams(location.search);
-    //     const searchKeyword = new URLSearchParams({ page, size, category: params.get("category") || "" });
-    //     initProductList(searchKeyword);
-    // }, [location.search, initProductList]);
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const search = params.get("search") || "";
+        setSearchTerm(search);
+        const searchKeyword = new URLSearchParams({ page: page - 1, size, search }).toString();
+        initProductList(searchKeyword);
+    }, [location.search, initProductList, page, size]);
 
     return (
-        <>
-            <div className={styles["content"]}>
-                <div className={styles["card"]}>
-                    <div className={styles["search-section"]}>
-                        <SearchField
-                            label={"검색어를 입력해 주세요."}
-                            value={searchTerm}
-                            className={styles["search-field"]}
-                            onChange={value => setSearchTerm(value)}
-                            onKeyUp={event => {
-                                if (event.key === "Enter") {
-                                    const searchKeyword = new URLSearchParams({ page, size });
-                                    initProductList(searchKeyword);
-                                }
-                            }}
-                        />
-                    </div>
-                    <div className={styles["container"]}>
-                        {productList.map((product, index) => (
-                            <div className={styles["grid-container"]} key={index}>
-                                <a href={`mainpage/${product.productId}`}
+        <div className={styles["content"]}>
+            <div className={styles["card"]}>
+                <div className={styles["container"]}>
+                    {productList.length > 0 ? (
+                        productList.map((product, index) => (
+                            <div className={styles["gridItem"]} key={index}>
+                                <a href={`/${product.productId}`}
                                     onClick={() => productClickHandler(product.productId)}>
                                     {product.imageList && product.imageList.length > 0 ? (
-                                        <img
-                                            src={product.imageList[0].image}
-                                            alt={`${product.productName} image`} />
+                                        <div className={styles["imgWrap"]}>
+                                            <img
+                                                className={styles.img}
+                                                src={product.imageList[0].image}
+                                                alt={`${product.productName} image`} />
+                                        </div>
                                     ) : (
-                                        <div className={styles["no-image"]}> No Image</div>
+                                        <div className={styles["noImage"]}> No Image</div>
                                     )}
-                                    <div className={styles["product-info"]}>
-                                        <span className={styles["product-name"]}>{product.productName}</span>
-                                        <span className={styles["product-price"]}>{product.productPrice.toLocaleString()}원</span>
+                                    <div className={styles["productInfo"]}>
+                                        <span className={styles["productName"]}>{product.productName}</span>
+                                        <span className={styles["productPrice"]}>{product.productPrice.toLocaleString()}원</span>
                                     </div>
                                 </a>
                             </div>
-                        ))}
-                    </div>
+                        ))
+                    ) : (
+                        <div className={styles["noProducts"]}>상품이 없습니다.</div>
+                    )}
                 </div>
-                <Pagination
-                    className={styles["pagination"]}
-                    total={total}
-                    limit={size}
-                    page={page}
-                    setPage={pageClickHandler} />
             </div>
-        </>
+            <Pagination
+                className={styles["pagination"]}
+                total={total}
+                limit={size}
+                page={page}
+                setPage={pageClickHandler} />
+        </div>
     );
 }
 
