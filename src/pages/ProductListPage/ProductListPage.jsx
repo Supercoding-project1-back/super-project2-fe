@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import styles from "./ProductListPage.scss";
+import styles from "./ProductListPage.module.scss";
 import { Pagination, SearchField } from "../../components/Core";
 
 function ProductListPage() {

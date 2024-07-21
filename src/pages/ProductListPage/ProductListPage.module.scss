@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 .content {
   display: flex;
   flex-direction: column;
@@ -21,8 +22,10 @@
 
     .container {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* 3 columns */
-      grid-template-rows: auto; /* automatic rows */
+      grid-template-columns: repeat(3, 1fr);
+      /* 3 columns */
+      grid-template-rows: auto;
+      /* automatic rows */
       gap: 1rem;
 
       .gridItem {

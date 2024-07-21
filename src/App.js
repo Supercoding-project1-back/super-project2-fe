@@ -12,16 +12,16 @@ import ProductUpload from "./pages/ProductUpload/ProductUpload";
 import AdminMyPage from "./pages/ProductUpload/AdminMyPage";
 
 const router = createBrowserRouter([
-  { path: "/", element: <Login /> },
+  { path: "/login", element: <Login /> },
   { path: "/join", element: <Join /> },
   {
-    path: "/mainpage",
+    path: "/",
     element: <HeaderLayout />,
     children: [
       { index: true, element: <ProductListPage /> },
       { path: "payment", element: <PaymentPage /> },
       { path: "basket", element: <BasketPage /> },
-      { path: ":productId", element: <ProductDetail /> },
+      { path: "mainpage/:productId", element: <ProductDetail /> },
       { path: "mypage", element: <MyPage /> },
       { path: "upload", element: <ProductUpload /> },
       { path: "result", element: <AdminMyPage /> },
