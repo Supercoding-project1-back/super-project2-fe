@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './ProductDetailInfo.module.scss';
 import useAccordion from '../../../hooks/useAccordion';
 import AccordionItem from '../../../components/AccordionItem';

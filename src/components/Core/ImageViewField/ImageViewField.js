@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./ImageViewField.module.scss";
 
-
 function ImageViewField({ className, src }) {
 
     return (
@@ -18,6 +17,9 @@ export default ImageViewField;
 
 
 
+// 이전 코드
+// import React from "react";
+// import styles from "./ImageViewField.module.scss";
 
 // function ImageViewField({ className, src }) {
 
@@ -32,5 +34,3 @@ export default ImageViewField;
 // }
 
 // export default ImageViewField;
-
-

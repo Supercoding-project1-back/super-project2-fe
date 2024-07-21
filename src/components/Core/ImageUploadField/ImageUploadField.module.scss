@@ -14,34 +14,6 @@
   .img {
     object-fit: cover;
     width: 100%;
-    max-height: 100%;
-  }
-
-  .event-container {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.5);
-
-    .button-section {
-      display: flex;
-      justify-content: flex-end;
-      width: 100%;
-      padding: 0.4rem 0.8rem;
-
-      .button {
-        background-color: transparent;
-        border: none;
-      }
-
-      .delete-icon {
-        width: 1.6rem;
-        height: 1.6rem;
-      }
-    }
+    height: 100%;
   }
 }

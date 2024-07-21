@@ -9,6 +9,7 @@ import HeaderLayout from "./pages/HeaderLayout";
 import "./App.css";
 import ProductDetail from "./pages/ProductListPage/ProductDetail/ProductDetail";
 import ProductUpload from "./pages/ProductUpload/ProductUpload";
+import AdminMyPage from "./pages/ProductUpload/AdminMyPage";
 
 const router = createBrowserRouter([
   { path: "/", element: <Login /> },
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       { path: ":productId", element: <ProductDetail /> },
       { path: "mypage", element: <MyPage /> },
       { path: "upload", element: <ProductUpload /> },
+      { path: "result", element: <AdminMyPage /> },
     ],
   },
 ]);
