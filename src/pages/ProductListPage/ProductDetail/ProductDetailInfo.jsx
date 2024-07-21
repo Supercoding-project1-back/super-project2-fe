@@ -67,7 +67,7 @@ const ProductDetailInfo = ({ product }) => {
           <ImageViewField
             key={id}
             className={styles.productImg}
-            src={`http://13.54.82.156:8080${file.fileUrl}`}
+            src={`http://localhost:8080${file.fileUrl}`}
           />
         ))}
       </div>

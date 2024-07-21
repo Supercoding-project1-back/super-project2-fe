@@ -3,7 +3,7 @@ import styles from "./TextField.module.scss";
 import { Icon } from "../index";
 
 
-function TextField({ value, onChange, type, disabled, className, placeholder }) {
+function TextField({ value, label, onChange, type, disabled, className, placeholder }) {
     const [inputValue, setInputValue] = useState(value || "");
 
     const inputChangeHandler = (event) => {
@@ -23,6 +23,7 @@ function TextField({ value, onChange, type, disabled, className, placeholder }) 
     return (
         <div className={`${styles["container"]} ${className}`}>
             <div className={styles["input-container"]}>
+                <label className={styles["label"]}>{label}</label>
                 <input
                     type={type || "text"}
                     className={`${styles["input"]} ${disabled && styles["disabled"]}`}

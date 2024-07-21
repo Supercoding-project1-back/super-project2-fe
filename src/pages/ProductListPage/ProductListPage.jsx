@@ -14,7 +14,7 @@ function ProductListPage() {
 
     const requestProductList = async (searchKeyword) => {
         try {
-            const response = await fetch(`http://13.54.82.156:8080/api/items?${searchKeyword}`, {
+            const response = await fetch(`http://localhost:8080/api/items?${searchKeyword}`, {
                 method: "GET",
             });
             if (!response.ok) {
@@ -44,7 +44,7 @@ function ProductListPage() {
                     productId: product.id,
                     productName: product.name,
                     productPrice: product.price,
-                    imageList: product.files.map(file => ({ image: `http://13.54.82.156:8080${file.fileUrl}` }))
+                    imageList: product.files.map(file => ({ image: `http://localhost:8080${file.fileUrl}` }))
                 }));
             setProductList(productsList);
         } else {

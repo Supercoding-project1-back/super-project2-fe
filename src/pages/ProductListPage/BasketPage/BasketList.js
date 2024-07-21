@@ -10,7 +10,7 @@ function BasketInfo({ onClick, product }) {
     const removeClickHandler = async (event) => {
         event.stopPropagation();
         try {
-            const response = await fetch(`http://13.54.82.156:8080/cart/${basketId}`, {
+            const response = await fetch(`http://localhost:8080/cart/${basketId}`, {
                 method: 'DELETE',
             });
             if (response.ok) {

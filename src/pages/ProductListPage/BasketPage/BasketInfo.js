@@ -8,7 +8,7 @@ function BasketInfo({ onClick, product }) {
     const removeClickHandler = async (event) => {
         event.stopPropagation();
         try {
-            const response = await fetch(`http://localhost:8080/basket/${basketId}`, {
+            const response = await fetch(`http://localhost:8080/cart/${basketId}`, {
                 method: 'DELETE',
             });
             if (response.ok) {
@@ -60,14 +60,14 @@ function BasketInfo({ onClick, product }) {
             <div className={styles["product-support"]}>
                 <div className={styles["button"]}>
                     <button className={styles["remove"]}
-                            onClick={removeClickHandler}
+                        onClick={removeClickHandler}
                     >
                         REMOVE
                     </button>
                 </div>
                 <div className={styles["button"]}>
                     <button className={styles["wishlist"]}
-                            onClick={wishClickHandler}
+                        onClick={wishClickHandler}
                     >
                         WISHLIST
                     </button>

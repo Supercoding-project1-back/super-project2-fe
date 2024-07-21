@@ -6,7 +6,7 @@ const AdminMyPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://13.54.82.156:8080/api/items');
+        const response = await fetch('http://localhost:8080/api/items');
         if (!response.ok) {
           throw new Error('Failed to fetch products');
         }

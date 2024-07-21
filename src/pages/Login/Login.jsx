@@ -11,7 +11,7 @@ function Login() {
   const signHandler = async () => {
     const data = { email, password };
     try {
-      const response = await fetch("http://13.54.82.156:8080/auth/login", {
+      const response = await fetch("http://localhost:8080/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,29 +37,31 @@ function Login() {
     <div className={styles["content"]}>
       <div className={styles["card"]}>
         <div className={styles["border"]}>
-          <div className={styles["first-section"]}>
-            <span className={styles["login-title"]}>로그인</span>
+          <div className={styles["firstSection"]}>
+            <span className={styles["loginTitle"]}>로그인</span>
           </div>
-          <div className={styles["input-section"]}>
-            <div className={styles["text-section"]}>
+          <div className={styles["inputSection"]}>
+            <div className={styles["textSection"]}>
               <TextField
                 className={styles["loginId"]}
+                label={"아이디"}
                 value={email}
-                placeholder={"이메일"}
+                placeholder={"이메일을 입력해주세요"}
                 onChange={(value) => setEmail(value)}
               />
             </div>
-            <div className={styles["text-section"]}>
+            <div className={styles["textSection"]}>
               <TextField
                 className={styles["password"]}
                 type="password"
+                label={"비밀번호"}
                 value={password}
-                placeholder={"비밀번호"}
+                placeholder={"비밀번호를 입력해주세요"}
                 onChange={(value) => setPassword(value)}
               />
             </div>
           </div>
-          <div className={styles["button-section"]}>
+          <div className={styles["buttonSection"]}>
             <button className={styles["login"]} onClick={signHandler}>
               SIGN IN
             </button>

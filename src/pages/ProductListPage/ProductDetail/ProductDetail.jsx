@@ -12,7 +12,7 @@ const ProductDetail = () => {
     console.log('Product ID:', productId); // productId 값 확인
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://13.54.82.156:8080/api/items/${productId}`, {
+        const response = await fetch(`http://localhost:8080/api/items/${productId}`, {
           method: 'GET',
           cache: 'no-cache',
         });
