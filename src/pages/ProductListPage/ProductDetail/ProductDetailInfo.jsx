@@ -2,8 +2,9 @@ import React from 'react';
 import styles from './ProductDetailInfo.module.scss';
 import useAccordion from '../../../hooks/useAccordion';
 import AccordionItem from '../../../components/AccordionItem';
+import { ImageViewField } from '../../../components/Core';
 
-const ProductDetailInfo = () => {
+const ProductDetailInfo = ({ product }) => {
   const { openIndex, toggleHandler } = useAccordion();
 
   const accordionInfoData = [
@@ -62,7 +63,13 @@ const ProductDetailInfo = () => {
   return (
     <section className={styles.wrap}>
       <div className={styles.imgGroup}>
-        이미지 공간
+        {product.files.map((file, id) => (
+          <ImageViewField
+            key={id}
+            className={styles.productImg}
+            src={`http://13.54.82.156:8080${file.fileUrl}`}
+          />
+        ))}
       </div>
       <ul className={styles.infoGroup}>
         {accordionInfoData.map((item, index) => {

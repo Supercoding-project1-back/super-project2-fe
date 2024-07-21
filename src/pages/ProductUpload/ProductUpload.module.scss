@@ -1,7 +1,7 @@
 .wrap {
   width: 100%;
   padding: 10px 0 0 20px;
-  margin: 0 auto;
+  margin: 0 10px;
 
   h2 {
     font-size: 24px;
@@ -25,6 +25,7 @@
       }
 
       & .inputWrap {
+        display: flex;
         flex: 1;
         padding: 20px 10px;
 
@@ -60,4 +61,10 @@
     background-color: #000;
     cursor: pointer;
   }
+}
+
+.ImgUpload,
+.ImgVeiw {
+  width: 10rem;
+  height: 10rem;
 }

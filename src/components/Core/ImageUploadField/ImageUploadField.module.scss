@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 .image-field-container {
   position: relative;
   width: 100%;
@@ -7,35 +8,12 @@
   border: 1px solid #CCD2DC;
   overflow: hidden;
   cursor: pointer;
+  margin-right: 0.8rem;
+  ;
 
   .img {
     object-fit: cover;
     width: 100%;
     height: 100%;
-  }
-
-  .event-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.3);
-
-    .button-section {
-      display: flex;
-      justify-content: flex-end;
-      width: 100%;
-      padding: 1.2rem 1.6rem;
-
-      .button {
-        background-color: transparent;
-      }
-
-      .delete-icon{
-        width: 4.2rem;
-        height: 4.2rem;
-      }
-    }
   }
 }

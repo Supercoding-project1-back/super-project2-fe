@@ -8,25 +8,29 @@ import Join from "./pages/Login/Join/Join";
 import HeaderLayout from "./pages/HeaderLayout";
 import "./App.css";
 import ProductDetail from "./pages/ProductListPage/ProductDetail/ProductDetail";
+import ProductUpload from "./pages/ProductUpload/ProductUpload";
+import AdminMyPage from "./pages/ProductUpload/AdminMyPage";
 
 const router = createBrowserRouter([
-    { path: "/", element: <Login /> },
-    { path: "/join", element: <Join /> },
-    {
-        path: "/mainpage",
-        element: <HeaderLayout />,
-        children: [
-            { index: true, element: <ProductListPage /> },
-            { path: "payment", element: <PaymentPage /> },
-            { path: "basket", element: <BasketPage /> },
-            { path: "mainpage/:productId", element: <ProductDetail /> },
-            { path: "mypage", element: <MyPage /> },
-        ],
-    },
+  { path: "/", element: <Login /> },
+  { path: "/join", element: <Join /> },
+  {
+    path: "/mainpage",
+    element: <HeaderLayout />,
+    children: [
+      { index: true, element: <ProductListPage /> },
+      { path: "payment", element: <PaymentPage /> },
+      { path: "basket", element: <BasketPage /> },
+      { path: ":productId", element: <ProductDetail /> },
+      { path: "mypage", element: <MyPage /> },
+      { path: "upload", element: <ProductUpload /> },
+      { path: "result", element: <AdminMyPage /> },
+    ],
+  },
 ]);
 
 function App() {
-    return (<RouterProvider router={router}/>);
+  return (<RouterProvider router={router} />);
 }
 
 export default App;
