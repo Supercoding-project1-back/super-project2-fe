@@ -1,0 +1,62 @@
+.station-list {
+  position: relative;
+  flex: 1;
+  overflow-y: scroll;
+  margin-top: 1rem;
+  box-shadow: 0 -0.5px 0 0 #CCD2DC, 0 0.5px 0 0 #CCD2DC; /* 얇은 위아래 경계선 */
+
+  /* 스크롤 막대 모양 변경 예시 */
+  &::-webkit-scrollbar {
+    width: 0.7rem; /* 스크롤 막대의 너비 */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #B1B7C3; /* 스크롤 막대의 색상 */
+    border-radius: 0.5rem; /* 스크롤 막대의 둥근 테두리 반지름 */
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #EAF0F3; /* 스크롤 막대의 트랙 색상 */
+  }
+
+  .top-shadow {
+    position: sticky;
+    top: 0;
+    box-shadow: 0 1px 5px 5px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media (max-width: 768px) {
+  .station-list {
+    position: relative;
+    flex: 1;
+    overflow-y: scroll;
+    margin-top: 1rem;
+    height: 30rem;
+    box-shadow: 0 -0.5px 0 0 #CCD2DC, 0 0.5px 0 0 #CCD2DC; /* 얇은 위아래 경계선 */
+
+    /* 스크롤 막대 모양 변경 예시 */
+    &::-webkit-scrollbar {
+      width: 0.7rem; /* 스크롤 막대의 너비 */
+      display: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #B1B7C3; /* 스크롤 막대의 색상 */
+      border-radius: 0.5rem; /* 스크롤 막대의 둥근 테두리 반지름 */
+      display: none;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #EAF0F3; /* 스크롤 막대의 트랙 색상 */
+      display: none;
+    }
+
+    .top-shadow {
+      position: sticky;
+      top: 0;
+      box-shadow: 0 1px 5px 5px rgba(0, 0, 0, 0.1);
+    }
+
+  }
+}

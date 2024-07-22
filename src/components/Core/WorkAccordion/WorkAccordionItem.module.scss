@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+.accordion-item {
+
+  .accordion-title {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 1.2rem;
+    background-color: #EDF7FF;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: left;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-top: 1px solid #CCD2DC;
+
+    &.blue-1 {
+
+    }
+
+    &.active {
+      border-bottom: 1px solid #CCD2DC;
+    }
+
+    .check {
+      margin-left: 1.2rem;
+    }
+  }
+
+  .accordion-content {
+    max-height: 0;
+    //max-height: fit-content;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+
+    &.active {
+      max-height: fit-content;
+    }
+  }
+
+}
