@@ -10,7 +10,7 @@ function BasketInfo({ onClick, product }) {
     const removeClickHandler = async (event) => {
         event.stopPropagation();
         try {
-            const response = await fetch(`http://localhost:8080/cart/${basketId}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/cart/${basketId}`, {
                 method: 'DELETE',
             });
             if (response.ok) {
@@ -24,7 +24,7 @@ function BasketInfo({ onClick, product }) {
     const wishClickHandler = async (event) => {
         event.stopPropagation();
         try {
-            const response = await fetch("http://localhost:8080/cart", {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/cart`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -6,7 +6,7 @@ const AdminMyPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/items');
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/items`);
         if (!response.ok) {
           throw new Error('Failed to fetch products');
         }
@@ -32,7 +32,7 @@ const AdminMyPage = () => {
           <div key={product.id} className="productItem">
             {product.files.length > 0 && (
               <img
-                src={`http://localhost:8080/${product.files[0].fileUrl}`}
+                src={`${process.env.REACT_APP_API_URL}${product.files[0].fileUrl}`}
                 alt={product.name}
               />
             )}

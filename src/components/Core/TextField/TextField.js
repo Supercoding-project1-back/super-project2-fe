@@ -24,19 +24,23 @@ function TextField({ value, label, onChange, type, disabled, className, placehol
         <div className={`${styles["container"]} ${className}`}>
             <div className={styles["input-container"]}>
                 <label className={styles["label"]}>{label}</label>
-                <input
-                    type={type || "text"}
-                    className={`${styles["input"]} ${disabled && styles["disabled"]}`}
-                    disabled={disabled}
-                    value={inputValue}
-                    onChange={inputChangeHandler}
-                    placeholder={placeholder}
-                />
-                {!disabled && inputValue && (
-                    <button className={styles["clear"]} onClick={inputClearHandler} tabIndex={-1}>
-                        <Icon type={"cancelStrokeGray"} className={styles["icon-clear"]} />
-                    </button>
-                )}
+                <div className={styles["input-wrap"]}>
+                    <input
+                        type={type || "text"}
+                        className={`${styles["input"]} ${disabled && styles["disabled"]}`}
+                        disabled={disabled}
+                        value={inputValue}
+                        onChange={inputChangeHandler}
+                        placeholder={placeholder}
+                    />
+                    <div className={styles["btn-wrap"]}>
+                        {!disabled && inputValue && (
+                            <button className={styles["clear"]} onClick={inputClearHandler} tabIndex={-1}>
+                                <Icon type={"cancel"} className={styles["icon-clear"]} />
+                            </button>
+                        )}
+                    </div>
+                </div>
             </div>
         </div>
     );

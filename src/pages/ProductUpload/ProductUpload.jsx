@@ -64,7 +64,7 @@ const ProductUpload = () => {
     });
 
     try {
-      const response = await fetch('http://localhost:8080/api/items', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/items`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`, // Authorization 헤더에 토큰 추가
@@ -74,7 +74,7 @@ const ProductUpload = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        console.error('API Response Error:', errorData); // 오류 응답을 콘솔에 찍어봅니다
+        console.error('API Response Error:', errorData);
         throw new Error(errorData.message || '상품 등록에 실패하였습니다.');
       }
 
