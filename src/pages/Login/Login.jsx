@@ -11,7 +11,7 @@ function Login() {
   const signHandler = async () => {
     const data = { email, password };
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/login`, {
+      const response = await fetch(`http://13.54.82.156:8080/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -21,7 +21,11 @@ function Login() {
       if (!response.ok) {
         throw new Error("로그인하는데 실패하였습니다.");
       }
-      // 로그인 성공 시, 로컬 스토리지에 로그인 상태 저장
+      const responseData = await response.json();
+      const token = response.headers.get('token'); // 헤더에서 토큰 가져오기
+
+      // 로그인 성공 시, 로컬 스토리지에 토큰과 로그인 상태 저장
+      localStorage.setItem("authToken", token);
       localStorage.setItem("isAuthenticated", "true");
       navigate("/");
     } catch (error) {

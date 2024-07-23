@@ -8,13 +8,13 @@ const ProductUpload = () => {
   const [product, setProduct] = useState({
     category: '',
     name: '',
-    images: ['', ''],
+    images: [],  // 빈 배열로 초기화
     price: 0,
     size: '',
     careGuide: '',
     stock: 0,
     description: '',
-    deliveryFee: ''
+    deliveryFee: 0  // 숫자로 초기화
   });
 
   const handleChange = (e) => {
@@ -26,26 +26,26 @@ const ProductUpload = () => {
   };
 
   const handleImageChange = (imageData) => {
-    setProduct(prevProduct => {
-      const newImages = [...prevProduct.images];
-      const emptyIndex = newImages.findIndex(img => img === '');
-      if (emptyIndex !== -1) {
-        newImages[emptyIndex] = imageData;
-      }
-      return { ...prevProduct, images: newImages };
-    });
+    setProduct(prevProduct => ({
+      ...prevProduct,
+      images: [...prevProduct.images, imageData]
+    }));
   };
 
   const handleImageClear = (index) => {
     setProduct(prevProduct => {
-      const newImages = [...prevProduct.images];
-      newImages[index] = '';
+      const newImages = prevProduct.images.filter((_, i) => i !== index);
       return { ...prevProduct, images: newImages };
     });
   };
 
   const handleProductUpload = async () => {
     const token = localStorage.getItem('authToken'); // 토큰을 가져옵니다
+
+    if (!token) {
+      alert('로그인 세션이 만료되었습니다. 다시 로그인해주세요.');
+      return;
+    }
 
     const formData = new FormData();
     formData.append('category', product.category);
@@ -57,29 +57,32 @@ const ProductUpload = () => {
     formData.append('description', product.description);
     formData.append('deliveryFee', product.deliveryFee.toString());
 
+    // 이미지 파일 추가
     product.images.forEach((image, index) => {
-      if (image instanceof File) { // 이미지가 File 객체인지 확인
-        formData.append(`images[${index}]`, image);
+      if (image instanceof File) {
+        formData.append('file', image); // 'file' 키로 설정
       }
     });
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/items`, {
+      const response = await fetch('http://13.54.82.156:8080/api/items', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`, // Authorization 헤더에 토큰 추가
+          'Token': token, // 헤더를 'Token'으로 변경 (서버 요구 사항에 따라 변경)
         },
-        body: JSON.stringify(formData),
+        body: formData,
       });
 
-      if (!response.ok) {
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log('상품 등록 응답 데이터:', responseData);
+        alert('상품이 성공적으로 등록되었습니다.');
+        navigate('/result');
+      } else {
         const errorData = await response.json();
         console.error('API Response Error:', errorData);
         throw new Error(errorData.message || '상품 등록에 실패하였습니다.');
       }
-
-      alert('상품이 성공적으로 등록되었습니다.');
-      navigate('/result');
     } catch (error) {
       console.error('상품 등록 실패:', error.message);
       alert('상품 등록에 실패하였습니다.');
