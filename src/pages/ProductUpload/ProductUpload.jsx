@@ -58,14 +58,14 @@ const ProductUpload = () => {
     formData.append('deliveryFee', product.deliveryFee.toString());
 
     // 이미지 파일 추가
-    product.images.forEach((image, index) => {
+    product.images.forEach((image) => {
       if (image instanceof File) {
         formData.append('file', image); // 'file' 키로 설정
       }
     });
 
     try {
-      const response = await fetch('http://13.54.82.156:8080/api/items', {
+      const response = await fetch(`http://13.54.82.156:8080/api/items`, {
         method: 'POST',
         headers: {
           'Token': token, // 헤더를 'Token'으로 변경 (서버 요구 사항에 따라 변경)
@@ -77,7 +77,10 @@ const ProductUpload = () => {
         const responseData = await response.json();
         console.log('상품 등록 응답 데이터:', responseData);
         alert('상품이 성공적으로 등록되었습니다.');
-        navigate('/result');
+
+        // 등록된 상품의 ID를 가져옵니다
+        const productId = responseData.id;
+        navigate(`/result?productId=${productId}`);
       } else {
         const errorData = await response.json();
         console.error('API Response Error:', errorData);
@@ -92,7 +95,6 @@ const ProductUpload = () => {
   return (
     <div className={styles.wrap}>
       <h2>상품등록</h2>
-
       <ul>
         <li>
           <div className={styles.subTitle}>Category</div>

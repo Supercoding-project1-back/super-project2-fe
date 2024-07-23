@@ -11,6 +11,7 @@ function ProductListPage() {
     const [size, setSize] = useState(6);
     const [page, setPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState("");
+    const [newProduct, setNewProduct] = useState(null);
 
     const requestProductList = async (searchKeyword) => {
         try {
@@ -65,10 +66,39 @@ function ProductListPage() {
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const search = params.get("search") || "";
+        const productId = params.get("productId");
+
         setSearchTerm(search);
         const searchKeyword = new URLSearchParams({ page: page - 1, size, search }).toString();
-        initProductList(searchKeyword);
+
+        if (productId) {
+            // 상품 등록 후 이동했을 때
+            const fetchNewProduct = async () => {
+                try {
+                    const response = await fetch(`http://13.54.82.156:8080/api/items/${productId}`);
+                    const data = await response.json();
+                    setNewProduct({
+                        productId: data.id,
+                        productName: data.name,
+                        productPrice: data.price,
+                        imageList: data.files.map(file => ({ image: `http://13.54.82.156:8080${file.fileUrl}` }))
+                    });
+                } catch (error) {
+                    console.error("새로운 상품 로드 실패:", error);
+                }
+            };
+            fetchNewProduct();
+        } else {
+            initProductList(searchKeyword);
+        }
     }, [location.search, initProductList, page, size]);
+
+    useEffect(() => {
+        if (newProduct) {
+            // 새로 등록된 상품을 리스트에 추가
+            setProductList(prevList => [newProduct, ...prevList]);
+        }
+    }, [newProduct]);
 
     return (
         <div className={styles["content"]}>

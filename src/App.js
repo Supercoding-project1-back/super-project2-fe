@@ -26,7 +26,7 @@ const router = createBrowserRouter([
       { path: ":productId", element: <ProductDetail /> },
       { path: "mypage", element: <MyPage /> },
       { path: "upload", element: <ProductUpload /> },
-      { path: "result", element: <AdminMyPage /> },
+      // { path: "result", element: <AdminMyPage /> },
     ],
   },
 ]);

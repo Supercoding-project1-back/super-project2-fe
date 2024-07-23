@@ -15,7 +15,7 @@ const AdminMyPage = () => {
     const fetchProducts = async () => {
       const token = localStorage.getItem('authToken'); // 토큰을 가져옵니다
       try {
-        const response = await fetch('http://13.54.82.156:8080/api/items', {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/items`, {
           headers: {
             'Token': token,
           },
