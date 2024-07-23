@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const useAccodion = (initIndex) => {
   const [openIndex, setOpenIndex] = useState(initIndex);

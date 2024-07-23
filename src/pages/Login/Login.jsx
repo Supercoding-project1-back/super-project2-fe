@@ -21,7 +21,7 @@ function Login() {
       if (!response.ok) {
         throw new Error("로그인하는데 실패하였습니다.");
       }
-      const responseData = await response.json();
+      // const responseData = await response.json();
       const token = response.headers.get('token'); // 헤더에서 토큰 가져오기
 
       // 로그인 성공 시, 로컬 스토리지에 토큰과 로그인 상태 저장
