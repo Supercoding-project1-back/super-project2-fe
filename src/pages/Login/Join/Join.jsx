@@ -3,6 +3,28 @@ import styles from "./Join.module.scss";
 import { TextField } from "../../../components/Core";
 import { useNavigate } from "react-router-dom";
 
+// 비밀번호 유효성 검사 함수
+const validatePassword = (password) => {
+    const passwordPattern = /^(?=.*[a-z])(?=.*\d)[a-z\d]{8,20}$/;
+    return passwordPattern.test(password);
+};
+
+// 폼 유효성 검사 함수
+const validateForm = (email, password, passwordConfirm, name, address, phoneNumber, gender, birthDate) => {
+    const newErrors = {};
+    if (!email) newErrors.email = "이메일을 입력해주세요";
+    if (!password) newErrors.password = "비밀번호를 입력해주세요";
+    if (!validatePassword(password)) newErrors.password = "비밀번호는 8자 이상 20자 이하 숫자와 영문소문자 조합이어야 합니다.";
+    if (!passwordConfirm) newErrors.passwordConfirm = "비밀번호 확인을 입력해주세요";
+    if (password !== passwordConfirm) newErrors.passwordConfirm = "비밀번호가 일치하지 않습니다";
+    if (!name) newErrors.name = "이름을 입력해주세요";
+    if (!address) newErrors.address = "주소를 입력해주세요";
+    if (!phoneNumber) newErrors.phoneNumber = "휴대폰번호를 입력해주세요";
+    if (!gender) newErrors.gender = "성별을 입력해주세요";
+    if (!birthDate) newErrors.birthDate = "생년월일을 입력해주세요";
+    return newErrors;
+};
+
 function Join() {
     const navigate = useNavigate();
 
@@ -17,22 +39,9 @@ function Join() {
 
     const [errors, setErrors] = useState({});
 
-    const validateForm = () => {
-        const newErrors = {};
-        if (!email) newErrors.email = "이메일을 입력해주세요";
-        if (!password) newErrors.password = "비밀번호를 입력해주세요";
-        if (!passwordConfirm) newErrors.passwordConfirm = "비밀번호 확인을 입력해주세요";
-        if (password !== passwordConfirm) newErrors.passwordConfirm = "비밀번호가 일치하지 않습니다";
-        if (!name) newErrors.name = "이름을 입력해주세요";
-        if (!address) newErrors.address = "주소를 입력해주세요";
-        if (!phoneNumber) newErrors.phoneNumber = "휴대폰번호를 입력해주세요";
-        if (!gender) newErrors.gender = "성별을 입력해주세요";
-        if (!birthDate) newErrors.birthDate = "생년월일을 입력해주세요";
-        return newErrors;
-    };
-
     const signHandler = async () => {
-        const newErrors = validateForm();
+        // 폼 유효성 검사
+        const newErrors = validateForm(email, password, passwordConfirm, name, address, phoneNumber, gender, birthDate);
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
             return;
@@ -162,7 +171,7 @@ function Join() {
                                 className={`${styles["gender"]} ${errors.gender ? styles["error"] : ""}`}
                                 value={gender}
                                 label={"성별"}
-                                placeholder={"'남' 또는 '여'로 입력해주세요"}
+                                placeholder={"'남성' 또는 '여성'로 입력해주세요"}
                                 onChange={(value) => {
                                     setGender(value);
                                     setErrors({ ...errors, gender: "" });
