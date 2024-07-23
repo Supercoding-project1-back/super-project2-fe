@@ -9,7 +9,7 @@ import Join from "./pages/Login/Join/Join";
 import HeaderLayout from "./pages/HeaderLayout";
 import ProductDetail from "./pages/ProductListPage/ProductDetail/ProductDetail";
 import ProductUpload from "./pages/ProductUpload/ProductUpload";
-import AdminMyPage from "./pages/ProductUpload/AdminMyPage";
+// import AdminMyPage from "./pages/ProductUpload/AdminMyPage";
 import SearchPage from "./pages/ProductListPage/Search/SearchPage";
 
 const router = createBrowserRouter([
