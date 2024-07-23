@@ -10,6 +10,5 @@ bower_components
 
 *.sublime*
 .env
-.env.production
 
 # End of https://www.toptal.com/developers/gitignore/api/react
