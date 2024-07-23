@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/super-project2-fe/static/css/main.21ce437e.css",
-    "main.js": "/super-project2-fe/static/js/main.3cb42377.js",
+    "main.js": "/super-project2-fe/static/js/main.bec41bde.js",
     "static/js/453.a8d87f17.chunk.js": "/super-project2-fe/static/js/453.a8d87f17.chunk.js",
     "index.html": "/super-project2-fe/index.html",
     "static/media/icon-cancel-stroke-gray.svg": "/super-project2-fe/static/media/icon-cancel-stroke-gray.c31fb453341775c0f96fb2a4241f58ab.svg",
@@ -9,11 +9,11 @@
     "static/media/icon-up-arrow-stroke-gray.svg": "/super-project2-fe/static/media/icon-up-arrow-stroke-gray.e3e75ceda83b268c04d980f44c8a51d4.svg",
     "static/media/icon-down-arrow-stroke-gray.svg": "/super-project2-fe/static/media/icon-down-arrow-stroke-gray.7bfef7a1c084712b1a9c2788b42f760f.svg",
     "main.21ce437e.css.map": "/super-project2-fe/static/css/main.21ce437e.css.map",
-    "main.3cb42377.js.map": "/super-project2-fe/static/js/main.3cb42377.js.map",
+    "main.bec41bde.js.map": "/super-project2-fe/static/js/main.bec41bde.js.map",
     "453.a8d87f17.chunk.js.map": "/super-project2-fe/static/js/453.a8d87f17.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.21ce437e.css",
-    "static/js/main.3cb42377.js"
+    "static/js/main.bec41bde.js"
   ]
 }

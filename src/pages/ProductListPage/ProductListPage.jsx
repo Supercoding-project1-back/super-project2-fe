@@ -15,7 +15,7 @@ function ProductListPage() {
 
     const requestProductList = async (searchKeyword) => {
         try {
-            const response = await fetch(`http://13.54.82.156:8080/api/items?${searchKeyword}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/items?${searchKeyword}`, {
                 method: "GET",
             });
             if (!response.ok) {
@@ -45,7 +45,7 @@ function ProductListPage() {
                     productId: product.id,
                     productName: product.name,
                     productPrice: product.price,
-                    imageList: product.files.map(file => ({ image: `http://13.54.82.156:8080${file.fileUrl}` }))
+                    imageList: product.files.map(file => ({ image: `${process.env.REACT_APP_API_URL}${file.fileUrl}` }))
                 }));
             setProductList(productsList);
         } else {
@@ -75,13 +75,13 @@ function ProductListPage() {
             // 상품 등록 후 이동했을 때
             const fetchNewProduct = async () => {
                 try {
-                    const response = await fetch(`http://13.54.82.156:8080/api/items/${productId}`);
+                    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/items/${productId}`);
                     const data = await response.json();
                     setNewProduct({
                         productId: data.id,
                         productName: data.name,
                         productPrice: data.price,
-                        imageList: data.files.map(file => ({ image: `http://13.54.82.156:8080${file.fileUrl}` }))
+                        imageList: data.files.map(file => ({ image: `${process.env.REACT_APP_API_URL}${file.fileUrl}` }))
                     });
                 } catch (error) {
                     console.error("새로운 상품 로드 실패:", error);

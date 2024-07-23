@@ -65,7 +65,7 @@ const ProductUpload = () => {
     });
 
     try {
-      const response = await fetch(`http://13.54.82.156:8080/api/items`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/items`, {
         method: 'POST',
         headers: {
           'Token': token, // 헤더를 'Token'으로 변경 (서버 요구 사항에 따라 변경)
