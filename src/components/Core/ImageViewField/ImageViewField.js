@@ -8,6 +8,7 @@ function ImageViewField({ className, src }) {
             <img
                 className={styles["img"]}
                 src={src}
+                alt="이미지"
             />
         </div>
     );

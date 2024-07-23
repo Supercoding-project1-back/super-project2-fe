@@ -114,7 +114,8 @@ function ProductListPage() {
                                             <img
                                                 className={styles.img}
                                                 src={product.imageList[0].image}
-                                                alt={`${product.productName} image`} />
+                                                alt={"이미지"}
+                                            />
                                         </div>
                                     ) : (
                                         <div className={styles["noImage"]}> No Image</div>
