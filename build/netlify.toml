@@ -1,5 +1,0 @@
-[[redirects]]
-from = "/proxy/*"
-to = "http://13.54.82.156:8080/:splat"
-status = 200
-force = true

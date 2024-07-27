@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.21ce437e.css",
-    "main.js": "/static/js/main.cf4f590f.js",
+    "main.js": "/static/js/main.8c30d721.js",
     "static/js/453.a8d87f17.chunk.js": "/static/js/453.a8d87f17.chunk.js",
     "index.html": "/index.html",
     "static/media/icon-cancel-stroke-gray.svg": "/static/media/icon-cancel-stroke-gray.c31fb453341775c0f96fb2a4241f58ab.svg",
@@ -9,11 +9,11 @@
     "static/media/icon-up-arrow-stroke-gray.svg": "/static/media/icon-up-arrow-stroke-gray.e3e75ceda83b268c04d980f44c8a51d4.svg",
     "static/media/icon-down-arrow-stroke-gray.svg": "/static/media/icon-down-arrow-stroke-gray.7bfef7a1c084712b1a9c2788b42f760f.svg",
     "main.21ce437e.css.map": "/static/css/main.21ce437e.css.map",
-    "main.cf4f590f.js.map": "/static/js/main.cf4f590f.js.map",
+    "main.8c30d721.js.map": "/static/js/main.8c30d721.js.map",
     "453.a8d87f17.chunk.js.map": "/static/js/453.a8d87f17.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.21ce437e.css",
-    "static/js/main.cf4f590f.js"
+    "static/js/main.8c30d721.js"
   ]
 }
