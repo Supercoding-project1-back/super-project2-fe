@@ -23,6 +23,7 @@ function ProductListPage() {
             }
             const data = await response.json();
             console.log("API Response:", data);
+            console.log(process.env.REACT_APP_API_URL);
             return data;
         } catch (error) {
             alert("상품 목록 조회에 실패하였습니다. 잠시 후 다시 시도해 주세요.");
