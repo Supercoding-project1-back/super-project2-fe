@@ -43,5 +43,5 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "gh-pages": "^6.1.1"
   },
-  "proxy": "https://graceful-bombolone-7b5ba8.netlify.app"
+  "proxy": "http://13.54.82.156:8080"
 }
